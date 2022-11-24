@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Rigidbody))]
-public class ClickAction : MonoBehaviour, IPointerClickHandler
+public class ClickAction : MonoBehaviour, IPointerClickHandler,IPointerDownHandler, IPointerUpHandler
 {
 
     Rigidbody rigidBody;
@@ -19,13 +19,15 @@ public class ClickAction : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         Vector3 vTemp = new Vector3(1, 2, 3);
-        vTemp = force;
-        vTemp.x = -5;
-        CL clA = new CL(1, 2);
-        CL clB = new CL(3, 5);
-        clB = clA;
-        clB.x = -5;
         rigidBody.AddForce(force, forceMode);
+    }
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        transform.Rotate(0, 2.5f, 0);
+    }
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        transform.Rotate(-10.0f, 0,0);
     }
 }
 class CL
